@@ -13,6 +13,8 @@ services:
 
   rabbitmq:
     image: eavictor/rabbitmq-autocluster
+    links:
+      - consul
     environment:
       AUTOCLUSTER_TYPE: "consul"
       CONSUL_HOST: "consul"
@@ -32,6 +34,7 @@ services:
     restart: unless-stopped
     deploy:
       replicas: 3
+      # mode: global
 
 networks:
   rabbit-net:
