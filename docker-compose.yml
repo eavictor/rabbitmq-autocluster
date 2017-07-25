@@ -25,15 +25,16 @@ services:
       CLEANUP_WARN_ONLY: "false"
       RABBITMQ_ERLANG_COOKIE: "secrect"
       RABBITMQ_DEFAULT_USER: "eavictor"
-      RABBITMQ_DEFAULT_PASS: "mypasswd"
+      RABBITMQ_DEFAULT_PASS: "acgnotamashi"
     ports:
       - "5672:5672"
       - "15672:15672"
     networks:
       - rabbit-net
-    restart: unless-stopped
     deploy:
       replicas: 3
+      restart_policy:
+        condition: on-failure
       # mode: global
 
 networks:
