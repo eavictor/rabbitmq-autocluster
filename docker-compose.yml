@@ -1,4 +1,4 @@
-version: '3'
+version: '3.6'
 
 services:
   consul:
@@ -12,8 +12,8 @@ services:
       - rabbit-net
 
   rabbitmq:
-    image: eavictor/rabbitmq-autocluster
-    links:
+    image: eavictor/rabbitmq_autocluster:3.6.15-management
+    depends_on:
       - consul
     environment:
       AUTOCLUSTER_TYPE: "consul"
@@ -32,10 +32,9 @@ services:
     networks:
       - rabbit-net
     deploy:
-      replicas: 3
+      mode: global
       restart_policy:
         condition: on-failure
-      # mode: global
 
 networks:
   rabbit-net:
