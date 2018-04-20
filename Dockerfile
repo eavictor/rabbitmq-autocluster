@@ -12,7 +12,7 @@ apt-get purge -y wget && \
 apt-get autoremove && \
 apt-get clean && \
 
-rabbitmq-plugins enable autocluster --offline
+rabbitmq-plugins enable autocluster --offline && \
 
 chmod +x wait-for-consul-and-start.sh
 CMD ["./wait-for-consul-and-start.sh"]
