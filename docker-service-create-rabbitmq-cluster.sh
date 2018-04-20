@@ -10,7 +10,8 @@ sudo docker service create \
 -p 8500:8500 \
 -e 'CONSUL_BIND_INTERFACE=eth0' \
 -e 'CONSUL_LOCAL_CONFIG={"skip_leave_on_interrupt": true}' \
-consul agent \
+consul:latest \
+agent \
 -server -ui -client=0.0.0.0 \
 -bootstrap-expect=1 \
 -retry-join=consul
@@ -31,7 +32,7 @@ sudo docker service create \
 -e "RABBITMQ_ERLANG_COOKIE=secrect" \
 -e "RABBITMQ_DEFAULT_USER=eavictor" \
 -e "RABBITMQ_DEFAULT_PASS=mypasswd" \
-eavictor/rabbitmq-autocluster
+eavictor/rabbitmq-autocluster:3.6.15-management
 
 # scale the instance
 sudo docker service scale rabbit=3  # change the number if you want more instances
