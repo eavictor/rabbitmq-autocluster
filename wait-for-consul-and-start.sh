@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Modify consul host if you plain to use other name
+# hostname must be exactly the same in docker compose file, or curl will always get DNS resolve error.
 CONSUL_HOST=consul
 
 
