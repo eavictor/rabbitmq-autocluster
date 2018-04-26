@@ -14,7 +14,7 @@ apt-get clean && \
 
 rabbitmq-plugins enable autocluster --offline && \
 
-chmod +x
+chmod +x /usr/local/bin/docker-entrypoint.sh && \
 chmod +x wait-for-consul-and-start.sh
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
