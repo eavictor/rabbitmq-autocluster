@@ -13,5 +13,5 @@ done
 >&2 echo "[$(date +'%Y/%m/%d %T')] Consul - Service for RabbitMQ auto cluster is available, start RabbitMQ Server."
 
 
-# 2. Start RabbitMQ service
-rabbitmq-server
+# 2. Start RabbitMQ service, must use EntryPoint shell script trigger service, official repository does not mention it !!
+/usr/local/bin/docker-entrypoint.sh rabbitmq-server
