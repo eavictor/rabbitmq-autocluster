@@ -3,7 +3,7 @@ FROM rabbitmq:3.6.15-management
 COPY wait-for-consul-and-start.sh wait-for-consul-and-start.sh
 
 # based on tutorial http://www.kuznero.com/posts/docker/rabbitmq-dynamic-cluster.html
-RUN  apt-get update && \
+RUN apt-get update && \
 apt-get upgrade -y && \
 apt-get install -y wget curl && \
 wget https://github.com/rabbitmq/rabbitmq-autocluster/releases/download/0.10.0/autocluster-0.10.0.ez -P /usr/lib/rabbitmq/plugins && \
@@ -14,5 +14,9 @@ apt-get clean && \
 
 rabbitmq-plugins enable autocluster --offline && \
 
+chmod +x
 chmod +x wait-for-consul-and-start.sh
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+
 CMD ["./wait-for-consul-and-start.sh"]
