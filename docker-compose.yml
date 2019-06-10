@@ -17,7 +17,7 @@ services:
       - rabbit-net
 
   rabbitmq:
-    image: eavictor/rabbitmq:3.7.15-management-cluster
+    image: eavictor/rabbitmq_autocluster:3.7.15-management
     depends_on:
       - consul
     environment:
