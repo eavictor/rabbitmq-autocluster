@@ -6,13 +6,12 @@ services:
     deploy:
       mode: global
       restart_policy:
-        condition: on-failure
-        delay: 10s
+        condition: any
+        delay: 3s
         window: 120s
-        order: stop-first
     ports:
       - "8500:8500"
-    command: ["agent", "-server", "-bootstrap-expect=3", "-retry-max=3", "-retry-interval=10s", "-datacenter=prod", "-join=consul", "-retry-join=consul", "-bind={{ GetInterfaceIP \"eth0\" }}", "-client=0.0.0.0", "-ui"]
+    command: ["agent", "-server", "-bootstrap-expect=3", "-retry-max=10", "-retry-interval=10s", "-datacenter=rabbit-net", "-join=tasks.consul", "-retry-join=tasks.consul", "-bind={{ GetInterfaceIP \"eth0\" }}", "-client=0.0.0.0", "-ui"]
     networks:
       - rabbit-net
 
