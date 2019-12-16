@@ -9,6 +9,10 @@ https://medium.com/hepsiburadatech/implementing-highly-available-rabbitmq-cluste
 
 ```docker stack deploy --compose-file docker-compose.yml```
 
+## Why I cannot create consul cluster ??
+
+The trick is use ```tasks.consul``` instead of ```consul```, which will list all consul containers' IP address.
+
 ## If you found RabbitMQ cluster is splitted
 
 1. ```docker service scale rabbit=0```

@@ -1,4 +1,4 @@
-FROM rabbitmq:3.7.15-management
+FROM rabbitmq:3.8.2-management
 
 ADD config/enabled_plugins /etc/rabbitmq/enabled_plugins
 ADD config/rabbitmq.conf /etc/rabbitmq/rabbitmq.conf

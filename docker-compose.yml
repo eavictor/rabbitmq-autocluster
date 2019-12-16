@@ -11,12 +11,12 @@ services:
         window: 120s
     ports:
       - "8500:8500"
-    command: ["agent", "-server", "-bootstrap-expect=3", "-retry-max=10", "-retry-interval=10s", "-datacenter=rabbit-net", "-join=tasks.consul", "-retry-join=tasks.consul", "-bind={{ GetInterfaceIP \"eth0\" }}", "-client=0.0.0.0", "-ui"]
+    command: ["agent", "-server", "-bootstrap-expect=3", "-retry-max=10", "-retry-interval=10s", "-datacenter=consul-net", "-join=tasks.consul", "-retry-join=tasks.consul", "-bind={{ GetInterfaceIP \"eth0\" }}", "-client=0.0.0.0", "-ui"]
     networks:
       - rabbit-net
 
   rabbitmq:
-    image: eavictor/rabbitmq_autocluster:3.7.15-management
+    image: eavictor/rabbitmq_autocluster:3.8.2-management
     depends_on:
       - consul
     environment:
