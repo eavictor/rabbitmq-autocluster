@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  consul:
+    image: consul
+    deploy:
+      mode: global
+      restart_policy:
+        condition: any
+        delay: 3s
+        window: 120s
+    ports:
+      - "8300:8300"
+      - "8500:8500"
+      - "8600:8600"
+    command: ["agent", "-server", "-bootstrap-expect=3", "-retry-max=10", "-retry-interval=10s", "-datacenter=consul-net", "-join=tasks.consul", "-retry-join=tasks.consul", "-bind={{ GetInterfaceIP \"eth0\" }}", "-client=0.0.0.0", "-ui"]
+    networks:
+      - consul-net
+
+networks:
+  consul-net:
+    driver: overlay
